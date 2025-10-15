@@ -492,6 +492,74 @@
             margin-top: 0.5rem;
         }
 
+        /* Events Section */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        .event-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
+        }
+        .event-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(0, 201, 255, 0.2) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            overflow: hidden;
+        }
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .event-card:hover .event-image img {
+            transform: scale(1.1);
+        }
+        .event-content {
+            padding: 2.5rem;
+        }
+        .event-title {
+            font-size: 1.8rem;
+            color: #2d3748;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .event-description {
+            color: #4a5568;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+        .event-status {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .status-completed {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+        }
+        .status-upcoming {
+            background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+            color: white;
+        }
+
         /* Creator Section */
         .creator-section {
             background: white;
@@ -614,17 +682,20 @@
             font-size: 1rem;
         }
 
-        /* Video Demo */
+        /* Video Demo - VERTICAL */
         .video-container {
             background: white;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
             margin-top: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .video-placeholder {
             width: 100%;
-            height: 500px;
+            height: 700px;
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
             display: flex;
             align-items: center;
@@ -739,6 +810,13 @@
             .project-image {
                 height: 250px;
             }
+            .events-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .event-image {
+                height: 250px;
+            }
             .gallery-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
@@ -747,7 +825,7 @@
                 height: 280px;
             }
             .video-placeholder {
-                height: 300px;
+                height: 500px;
                 font-size: 3rem;
             }
             .creator-section {
@@ -824,6 +902,9 @@
             .stats-container {
                 grid-template-columns: 1fr;
             }
+            .video-placeholder {
+                height: 400px;
+            }
         }
     </style>
 </head>
@@ -852,14 +933,11 @@
         <div class="cloud" style="top: 40%; animation-delay: 20s;">☁️</div>
         
         <!-- Flowers at bottom corners -->
-        <div class="flower" style="bottom: 10px; left: 20px;">🌻</div>
-        <div class="flower" style="bottom: 10px; left: 100px; animation-delay: 1s;">🌺</div>
-        <div class="flower" style="bottom: 10px; right: 20px; animation-delay: 0.5s;">🌸</div>
-        <div class="flower" style="bottom: 10px; right: 100px; animation-delay: 1.5s;">🌼</div>
+        <div class="flower" style="bottom: 10px; left: 20px;">🌸</div>
+        <div class="flower" style="bottom: 10px; left: 100px; animation-delay: 1s;">🌼</div>
+        <div class="flower" style="bottom: 10px; right: 20px; animation-delay: 0.5s;">🌻</div>
+        <div class="flower" style="bottom: 10px; right: 100px; animation-delay: 1.5s;">🪷</div>
     </div>
-
-    <!-- Sound Toggle -->
-   
 
     <!-- Animated Leaves -->
     <div class="leaf" style="left: 10%; animation-duration: 15s;">🍃</div>
@@ -974,6 +1052,55 @@
         </div>
     </section>
 
+    <!-- Gallery -->
+    <section>
+        <h2 class="section-title">Galería del Proyecto</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+              <div class="media-placeholder">
+                <img src="img/huerta.jpg" alt="Descripción">
+              </div>
+            </div>
+            <div class="gallery-item">
+              <div class="media-placeholder">
+                <img src="img/riego.jpg" alt="Descripción">
+              </div>
+            </div>
+            <div class="gallery-item">
+             <div class="media-placeholder">
+                <img src="img/niños.jpg" alt="Descripción">
+              </div>
+            </div>
+        </div>
+
+        <div class="video-container">
+            <div class="video-placeholder">
+  <video src="video/karen.mp4" controls></video>
+</div>
+        </div>
+    </section>
+
+     <section class="garden-border">
+        <h2 class="section-title">La Huerta También ha Participado en Estos Eventos</h2>
+        <div class="events-grid">
+            <div class="event-card">
+                <div class="event-image">
+                    <img src="img/barranquilla.jpg" alt="REDCOLSI 2024">
+                </div>
+                <div class="event-content">
+                    <h3 class="event-title">Evento Nacional REDCOLSI 2024</h3>
+                    <p class="event-description">
+                        Participación destacada en el evento nacional de la Red Colombiana de Semilleros de Investigación, 
+                        mostrando los avances e innovaciones de nuestro proyecto de huerta automatizada.
+                    </p>
+                    <span class="event-status status-completed">✓ Completado</span>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
     <!-- Resulting Projects -->
     <section class="garden-border">
         <h2 class="section-title">Proyectos Resultantes</h2>
@@ -1008,16 +1135,15 @@
                 </div>
             </div>
 
-                <div class="project-card">
+            <div class="project-card">
                 <div class="project-image">
-                    <img src="img/deshidratador.jpg" alt="Acuaponía">
+                    <img src="img/deshidratador.jpg" alt="Deshidratador">
                 </div>
                 <div class="project-info">
-                    <h3 class="project-title">Deshidratador de frutos</h3>
-                    <span class="project-badge">Tecnologia avanzada</span>
+                    <h3 class="project-title">Deshidratador de Frutos</h3>
+                    <span class="project-badge">Tecnología Avanzada</span>
                 </div>
             </div>
-
 
             <div class="project-card">
                 <div class="project-image">
@@ -1038,37 +1164,11 @@
                     <span class="project-badge">Ecosistema Integrado</span>
                 </div>
             </div>
-
-             
         </div>
     </section>
 
-    <!-- Gallery -->
-    <section>
-        <h2 class="section-title">Galería del Proyecto</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-              <div class="media-placeholder">
-                <img src="img/huerta.jpg" alt="Descripción">
-              </div>
-            </div>
-            <div class="gallery-item">
-              <div class="media-placeholder">
-                <img src="img/riego.jpg" alt="Descripción">
-              </div>
-            </div>
-            <div class="gallery-item">
-             <div class="media-placeholder">
-                <img src="img/niños.jpg" alt="Descripción">
-              </div>
-            </div>
-        </div>
-
-        <div class="video-container">
-            <div class="video-placeholder">🎬</div>
-            <p class="video-caption">Video demostrativo del proyecto</p>
-        </div>
-    </section>
+    <!-- Events Section -->
+   
 
     <!-- Creator Section -->
     <section>
@@ -1117,7 +1217,6 @@
         let ambientSound;
 
         function initSound() {
-            // Web Audio API para sonido ambiental de naturaleza
             const AudioContext = window.AudioContext || window.webkitAudioContext;
             if (AudioContext) {
                 const audioContext = new AudioContext();
@@ -1127,7 +1226,6 @@
                 oscillator.connect(gainNode);
                 gainNode.connect(audioContext.destination);
                 
-                // Sonido ambiental suave (simula naturaleza)
                 oscillator.type = 'sine';
                 oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
                 gainNode.gain.setValueAtTime(0.02, audioContext.currentTime);
@@ -1157,7 +1255,6 @@
             }
         }
 
-        // Scroll Progress Bar
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -1165,7 +1262,6 @@
             document.querySelector('.progress-bar').style.width = scrolled + '%';
         });
 
-        // Intersection Observer for Sections Animation
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -100px 0px'
@@ -1183,7 +1279,6 @@
             observer.observe(section);
         });
 
-        // Click sound effects on cards
         document.querySelectorAll('.feature-card, .project-card, .gallery-item').forEach(card => {
             card.addEventListener('click', () => {
                 if (soundEnabled && ambientSound) {
@@ -1204,7 +1299,6 @@
             });
         });
 
-        // Hover sound effects
         document.querySelectorAll('.feature-card, .project-card').forEach(card => {
             card.addEventListener('mouseenter', () => {
                 if (soundEnabled && ambientSound) {
@@ -1225,12 +1319,10 @@
             });
         });
 
-        // Initialize on page load
         window.addEventListener('load', () => {
             setTimeout(initSound, 500);
         });
 
-        // Stat counter animation
         function animateCounter(element, target) {
             let current = 0;
             const increment = target / 50;
