@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huerta Automatizada - Proyecto Innovador</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            background: #f8f9fa;
+            color: #2d3748;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #00c9ff 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="%23ffffff" opacity="0.1"></path></svg>') repeat-x;
+            bottom: 0;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 4rem 3rem;
+            border-radius: 20px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+            max-width: 1000px;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-container {
+            margin: 0 0 2rem 0;
+        }
+
+        .logo-placeholder {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+            transform: rotate(-5deg);
+            transition: transform 0.3s ease;
+            overflow: hidden;
+        }
+
+        .logo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transform: rotate(5deg);
+        }
+
+        .logo-placeholder:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: #4a5568;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, #667eea 0%, #00c9ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #00c9ff);
+            border-radius: 2px;
+        }
+
+        /* About Project */
+        .about-project {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        .project-description {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: #4a5568;
+            margin-bottom: 2rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(0, 201, 255, 0.1) 100%);
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border-left: 5px solid #667eea;
+        }
+
+        .highlight-box h3 {
+            color: #667eea;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .highlight-box p {
+            color: #4a5568;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-top: 4px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+            border-top-color: #667eea;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .feature-card h3 {
+            color: #2d3748;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            color: #718096;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* Creator Section */
+        .creator-section {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .creator-photo {
+            width: 220px;
+            height: 220px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .creator-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .creator-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .creator-info h3 {
+            font-size: 2.2rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .creator-info p {
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin-bottom: 0.8rem;
+            line-height: 1.7;
+        }
+
+        .creator-info strong {
+            color: #667eea;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.9rem 1.8rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            font-size: 0.95rem;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .media-placeholder {
+            width: 100%;
+            height: 350px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(0, 201, 255, 0.2) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            overflow: hidden;
+        }
+
+        .media-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-caption {
+            padding: 1.5rem;
+            text-align: center;
+            color: #2d3748;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* Video Demo */
+        .video-container {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            margin-top: 3rem;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            overflow: hidden;
+        }
+
+        .video-placeholder video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .video-caption {
+            padding: 2rem;
+            text-align: center;
+            color: #2d3748;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.95;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero-content {
+                padding: 2.5rem 2rem;
+            }
+
+            .creator-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .logo-placeholder {
+                width: 150px;
+                height: 150px;
+                font-size: 4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <div class="logo-container">
+                <div class="logo-placeholder">🌿</div>
+            </div>
+            <h1>Huerta Automatizada</h1>
+            <p class="subtitle">Innovación educativa que une naturaleza y tecnología</p>
+        </div>
+    </div>
+
+    <!-- About Project -->
+    <section>
+        <h2 class="section-title">Sobre el Proyecto</h2>
+        <div class="about-project">
+            <p class="project-description">
+                Nuestra Huerta Automatizada es un proyecto innovador que combina agronomía y electrónica 
+                para crear una experiencia educativa única. Durante 3 años hemos perfeccionado este sistema 
+                que permite a los niños aprender sobre cultivo de plantas mientras descubren los fundamentos 
+                de la electrónica y la automatización.
+            </p>
+            
+            <div class="highlight-box">
+                <h3>¿Qué nos hace únicos?</h3>
+                <p>
+                    Mientras existen muchas huertas escolares, nosotros decidimos llevarlas al siguiente nivel. 
+                    Al integrar nuestros conocimientos técnicos en electrónica, creamos un sistema automatizado 
+                    que sirve como plataforma base para múltiples proyectos educativos. Los niños no solo aprenden 
+                    sobre plantas, también sobre tecnología y programación.
+                </p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Objetivo del Proyecto</h3>
+                <p>
+                    Proporcionar una herramienta educativa integral que introduce a los estudiantes más jóvenes 
+                    en el mundo de la agricultura sostenible y la tecnología, fomentando el aprendizaje 
+                    interdisciplinario desde temprana edad.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section>
+        <h2 class="section-title">Características y Funcionalidades</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">💧</span>
+                <h3>Riego Automático</h3>
+                <p>Sistema inteligente que mantiene la humedad perfecta para cada tipo de planta</p>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">🌡️</span>
+                <h3>Control de Clima</h3>
+                <p>Monitoreo constante de temperatura y condiciones ambientales</p>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">📊</span>
+                <h3>Sensores Inteligentes</h3>
+                <p>Tecnología que detecta las necesidades de las plantas en tiempo real</p>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">🎓</span>
+                <h3>Educación Integral</h3>
+                <p>Combina aprendizaje de agronomía con conceptos de electrónica</p>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">🔧</span>
+                <h3>Plataforma Base</h3>
+                <p>Sistema modular que permite expandir y crear nuevos proyectos</p>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">🌍</span>
+                <h3>Sostenibilidad</h3>
+                <p>Promueve prácticas ecológicas y uso eficiente de recursos</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+<section>
+        <h2 class="section-title">Galería del Proyecto</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+              <div class="media-placeholder">
+  <img src="img/huerta.jpg" alt="Descripción">
+</div>
+            </div>
+            <div class="gallery-item">
+              <div class="media-placeholder">
+  <img src="img/riego.jpg" alt="Descripción">
+</div>
+            </div>
+            <div class="gallery-item">
+             <div class="media-placeholder">
+  <img src="img/niños.jpg" alt="Descripción">
+</div>
+  
+        </div>
+
+        <div class="video-container">
+            <div class="video-placeholder">🎬</div>
+            <p class="video-caption">Video demostrativo del proyecto</p>
+        </div>
+    </section>
+
+    <!-- Creator Section -->
+    <section>
+        <h2 class="section-title">Sobre la Creadora</h2>
+        <div class="creator-section">
+           <div class="creator-photo">
+  <img src="img/karen.jpg" alt="Karen Gil">
+</div>
+            <div class="creator-info">
+                <h3>Karen Johana Gil Gil</h3>
+                <p><strong>Institución:</strong> Instituto Técnico 26 de Marzo</p>
+                <p><strong>Nivel:</strong> Bachiller (11°)</p>
+                <p><strong>Edad:</strong> 17 años</p>
+                
+                <p style="margin-top: 2rem;">
+                    <strong>Inspiración:</strong><br>
+                    Este proyecto nació de mi deseo de crear algo significativo para los niños de mi institución. 
+                    Sin experiencia previa en agronomía, decidí combinar mis conocimientos técnicos en electrónica 
+                    con el mundo de la agricultura, creando una herramienta educativa innovadora. A través de este 
+                    proyecto, adquirí experiencia en agronomía mientras aplicaba mis habilidades técnicas.
+                </p>
+
+                <div class="social-links">
+                    <a href="https://instagram.com/karen_gil_17" class="social-btn" target="_blank">
+                        Instagram
+                    </a>
+                    <a href="https://www.facebook.com/share/1FTdLBa73d/" class="social-btn" target="_blank">
+                        Facebook
+                    </a>
+                    <a href="https://wa.me/573227252009" class="social-btn" target="_blank">
+                        WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Huertas Para Aprender - Un proyecto que cultiva conocimiento</p>
+        <p>Instituto Técnico 26 de Marzo | 2025</p>
+    </footer>
+</body>
+</html>
